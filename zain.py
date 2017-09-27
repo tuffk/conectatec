@@ -19,7 +19,7 @@ def cast(board):
             num = (num*10) + j
     return num
 
-def recorre2(long, num):
+def recorre2(long, num, shiftit):
     global masks
     global masks_down
     global masks_up
@@ -35,19 +35,19 @@ def recorre2(long, num):
             if(cont == 0):
                 pass
                 #print("caso 1")
-                #recorre(long,num,5,5,x)
+                recorre(long,num,5,5,x, shiftit)
             elif(cont == 1):
                 pass
                 #print("caso 2")
-                #recorre(long,num,6,4,x)
+                recorre(long,num,6,4,x, shiftit)
             elif(cont == 2):
                 #pass
                 #print("caso 3")
-                recorre(long,num,5,4,x)
+                recorre(long,num,5,4,x, shiftit)
         cont += 1
             
 
-def recorre(long, num, length, height, mask):
+def recorre(long, num, length, height, mask, shiftit):
     global masks
     global masks_down
     global masks_up
@@ -67,7 +67,7 @@ def recorre(long, num, length, height, mask):
             #print("J: " + str(j))
             if i < height:
                 #print("Num:  ", num)
-                temp, temp_l = wise(num, mask)
+                temp, temp_l = wise(num, mask, shiftit)
                 if temp > own_completness:
                     own_completness = temp
                     rows = []
@@ -87,7 +87,7 @@ def recorre(long, num, length, height, mask):
         #print("Num :", num)
      
 
-def wise(num, mask):
+def wise(num, mask, shifit):
     global masks
     global masks_down
     global masks_up
@@ -95,6 +95,7 @@ def wise(num, mask):
     global oponent_completness
     global own_completness
     global rows
+    mask << shifit
     res = 0
     pos = []
     cont = 0
@@ -167,11 +168,12 @@ def main():
             [0,0,0,0,0,0,0]
             ]
     kuz = cast(test1)
+    
     #print(kuz)
-    recorre2(len(str(kuz)),kuz)
+    recorre2(len(str(kuz)),kuz, 0)
     #print(wise(kuz/100000, masks_up[1]))
-    print(own_completness)
-    print(rows)
+    #print(own_completness)
+    #print(rows)
 
 
 
