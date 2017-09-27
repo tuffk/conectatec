@@ -33,12 +33,13 @@ def recorre2(long, num):
     for mask in masks:
         for x in mask:
             if(cont == 0):
-                #pass
+                pass
                 #print("caso 1")
-                recorre(long,num,5,5,x)
+                #recorre(long,num,5,5,x)
             elif(cont == 1):
+                pass
                 #print("caso 2")
-                recorre(long,num,6,4,x)
+                #recorre(long,num,6,4,x)
             elif(cont == 2):
                 #pass
                 #print("caso 3")
@@ -65,6 +66,7 @@ def recorre(long, num, length, height, mask):
             #print("len: " + str(j))
             #print("J: " + str(j))
             if i < height:
+                #print("Num:  ", num)
                 temp, temp_l = wise(num, mask)
                 if temp > own_completness:
                     own_completness = temp
@@ -75,15 +77,14 @@ def recorre(long, num, length, height, mask):
                         k %= 7
                         #k += 1
                         rows.append(k)
-                    
-            num=int(num/10)
+            num=int(num//10)
 
         if length == 6:
             num=int(num/10)
         elif length == 5:
             num = int(num/100)
         
-        print(num)
+        #print("Num :", num)
      
 
 def wise(num, mask):
@@ -98,8 +99,8 @@ def wise(num, mask):
     pos = []
     cont = 0
     while(mask > 0):
-        #print(mask)
-        #print(len(str(num)), "==", len(str(mask)))
+        #print("Mask: ",mask)
+        #print((mask % 10) == (num % 10))
         if((mask % 10 ) == 0):
             mask = int(mask/10)
             num = int(num/ 10)
@@ -111,8 +112,8 @@ def wise(num, mask):
             return -1,[]
         else:
             pos.append(cont)
-        mask = int(mask/10)
-        num = int(num/ 10)
+        mask = int(mask//10)
+        num = int(num//10)
         cont += 1
     #print("pos")
     #print("\n")
@@ -160,13 +161,13 @@ def main():
     test1 = [
             [0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0],
-            [1,0,0,0,0,0,0],
-            [0,1,0,0,0,0,0],
-            [0,0,1,0,0,0,0]
+            [0,0,1,0,0,0,0],
+            [0,0,0,1,0,2,0],
+            [0,0,0,0,1,0,0],
+            [0,0,0,0,0,0,0]
             ]
     kuz = cast(test1)
-    print(kuz)
+    #print(kuz)
     recorre2(len(str(kuz)),kuz)
     #print(wise(kuz/100000, masks_up[1]))
     print(own_completness)
