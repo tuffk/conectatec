@@ -68,15 +68,24 @@ def recorre(long, num, length, height, mask, shiftit):
             if i < height:
                 #print("Num:  ", num)
                 temp, temp_l = wise(num, mask, shiftit)
-                if temp > own_completness:
-                    own_completness = temp
-                    rows = []
-                    #print(j)
-                    for k in temp_l:
-                        k += j
-                        k %= 7
-                        #k += 1
-                        rows.append(k)
+                if (shiftit):
+                    if temp > own_completness:
+                        own_completness = temp
+                        rows = []
+                        #print(j)
+                        for k in temp_l:
+                            k += j
+                            k %= 7
+                            rows.append(k)
+                else:
+                    if temp > oponent_completness:
+                        oponent_completness = temp
+                        rows = []
+                        #print(j)
+                        for k in temp_l:
+                            k += j
+                            k %= 7
+                            rows.append(k)
             num=int(num//10)
 
         if length == 6:
