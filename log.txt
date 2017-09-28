@@ -1,0 +1,20 @@
+matrix: 0
+own: 0.0
+opo: 0.0
+Move: random
+
+matrix: 1200000
+own: 0.0
+opo: 25
+Move: random
+
+matrix: 20000001200100
+own: 0.0
+opo: 25
+Move: random
+
+matrix: 20000001201102
+own: 0.0
+opo: 50
+Move: random
+

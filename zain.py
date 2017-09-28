@@ -1,8 +1,8 @@
 import numpy as np
-import tensorflow as tf
-import pandas as pd
-from sklearn import tree
-from sklearn import preprocessing
+#import tensorflow as tf
+#import pandas as pd
+#from sklearn import tree
+#from sklearn import preprocessing
 from random import randint
 
 def cast(board):
@@ -47,7 +47,7 @@ def recorre2(long, num, shiftit):
                 #print("caso 3")
                 recorre(long,num,5,4,x, shiftit)
         cont += 1
-            
+
 
 def recorre(long, num, length, height, mask, shiftit):
     global masks
@@ -95,9 +95,9 @@ def recorre(long, num, length, height, mask, shiftit):
             num=int(num/10)
         elif length == 5:
             num = int(num/100)
-        
+
         #print("Num :", num)
-     
+
 
 def wise(num, mask, shifit):
     global masks
@@ -148,7 +148,7 @@ def play(turn, board):
     rows = []
     masks_down = [
             1110000010, # T normal
-            100000111, # T invertida 
+            100000111, # T invertida
             ]
     masks_up = [
             100000110000001, # T palito izquierda
@@ -182,17 +182,30 @@ def play(turn, board):
    #         [0,0,0,0,0,0,0]
    #         ]
     kuz = cast(board)
-    
+
     #print(kuz)
     recorre2(len(str(kuz)),kuz, 0)
     #print(wise(kuz/100000, masks_up[1]))
     #print(own_completness)
     #print(rows)
+    f = open('log.txt', 'a')
+    f.write('matrix: ' + str(kuz))
+    f.write('\nown: ' + str(own_completness))
+    f.write('\nopo: ' + str(oponent_completness))
     if(oponent_completness >= 75 and own_completness < 75):
+        f.write('\nMove: block')
+        f.write('\n\n')
+        f.close()
         return oponent_rows[0]
     if(own_completness == 0):
+        f.write('\nMove: random')
+        f.write('\n\n')
+        f.close()
         return randint(0,6)
     place = rows[0]
+    f.write('\nMove: informed')
+    f.write('\n\n')
+    f.close()
     return place
 
 def completeness():
