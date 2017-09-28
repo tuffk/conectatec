@@ -3,7 +3,7 @@ import tensorflow as tf
 import pandas as pd
 from sklearn import tree
 from sklearn import preprocessing
-
+from random import randint
 
 def cast(board):
     global masks
@@ -13,6 +13,7 @@ def cast(board):
     global oponent_completness
     global own_completness
     global rows
+    global oponent_rows
     num = 0
     for i in board:
         for j in i:
@@ -27,6 +28,7 @@ def recorre2(long, num, shiftit):
     global oponent_completness
     global own_completness
     global rows
+    global oponent_rows
     cont = 0
     #print("long")
     #print(num)
@@ -55,6 +57,7 @@ def recorre(long, num, length, height, mask, shiftit):
     global oponent_completness
     global own_completness
     global rows
+    global oponent_rows
     temp = 0.0
     temp_l = []
     times = int(1 + long/8)
@@ -80,12 +83,12 @@ def recorre(long, num, length, height, mask, shiftit):
                 else:
                     if temp > oponent_completness:
                         oponent_completness = temp
-                        rows = []
+                        oponent_rows = []
                         #print(j)
                         for k in temp_l:
                             k += j
                             k %= 7
-                            rows.append(k)
+                            oponent_rows.append(k)
             num=int(num//10)
 
         if length == 6:
@@ -104,6 +107,7 @@ def wise(num, mask, shifit):
     global oponent_completness
     global own_completness
     global rows
+    global oponent_rows
     mask << shifit
     res = 0
     pos = []
@@ -129,7 +133,7 @@ def wise(num, mask, shifit):
     #print("\n")
     return res,pos
 
-def main():
+def play(turn, board):
     global masks
     global masks_down
     global masks_up
@@ -137,6 +141,7 @@ def main():
     global oponent_completness
     global own_completness
     global rows
+    global oponent_rows
     oponent_completness = 0.0
     own_completness = 0.0
 
@@ -176,16 +181,23 @@ def main():
             [0,0,0,0,1,0,0],
             [0,0,0,0,0,0,0]
             ]
-    kuz = cast(test1)
+    kuz = cast(board)
     
     #print(kuz)
     recorre2(len(str(kuz)),kuz, 0)
     #print(wise(kuz/100000, masks_up[1]))
     #print(own_completness)
     #print(rows)
-    return rows[0]
+    if(oponent_completness >= 75 and own_completness < 75):
+        return oponent_rows[0]
+    if(own_completness == 0):
+        return randint(0,6)
+    place = 6 - rows[0]
+    return place
 
+def completeness():
+    return own_completness
 
 
 if __name__ == "__main__":
-    main()
+    play()
