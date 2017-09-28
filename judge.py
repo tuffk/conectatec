@@ -1,4 +1,5 @@
 import random
+import time
 import zain as kuz
 
 width, height = 7, 6
@@ -152,13 +153,11 @@ def checkWinTopRight(row, col, player_number):
 
 
 def intelligentFunction1(turn, board):
-    return int(input("play"))
-
+    #return int(input("row: "))
+    return kuz.play(turn,board)
 
 def intelligentFunction2(turn, board):
-    point = kuz.play(turn,board)
-    print("Program point: ", point)
-    return point
+    return kuz.play(turn,board)
 
 def main():
     global board
@@ -166,6 +165,7 @@ def main():
     loser = 0
     while (gameFinished(turn) == 0):
         printGame()
+        time.sleep(1)
         if (turn == 1):
             turn = 2
         else:

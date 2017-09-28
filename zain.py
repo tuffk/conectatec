@@ -35,11 +35,11 @@ def recorre2(long, num, shiftit):
     for mask in masks:
         for x in mask:
             if(cont == 0):
-                pass
+                #pass
                 #print("caso 1")
                 recorre(long,num,5,5,x, shiftit)
             elif(cont == 1):
-                pass
+                #pass
                 #print("caso 2")
                 recorre(long,num,6,4,x, shiftit)
             elif(cont == 2):
@@ -108,7 +108,7 @@ def wise(num, mask, shifit):
     global own_completness
     global rows
     global oponent_rows
-    mask << shifit
+    mask = mask << shifit
     res = 0
     pos = []
     cont = 0
@@ -133,7 +133,7 @@ def wise(num, mask, shifit):
     #print("\n")
     return res,pos
 
-def play(turn, board):
+def play(turn = 2, board = None):
     global masks
     global masks_down
     global masks_up
@@ -145,6 +145,7 @@ def play(turn, board):
     oponent_completness = 0.0
     own_completness = 0.0
 
+    oponent_rows = []
     rows = []
     masks_down = [
             1110000010, # T normal
@@ -182,32 +183,51 @@ def play(turn, board):
    #         [0,0,0,0,0,0,0]
    #         ]
     kuz = cast(board)
-
+    #kuz = 200000020001001001102221
     #print(kuz)
     recorre2(len(str(kuz)),kuz, 0)
     recorre2(len(str(kuz)), kuz, 1)
+
+    if not (turn == 2):
+        temp_own = oponent_completness
+        oponent_completness = own_completness
+        own_completness = temp_own
+        temp_lo = oponent_rows
+        oponent_rows = rows
+        rows = temp_lo
     #print(wise(kuz/100000, masks_up[1]))
     #print(own_completness)
     #print(rows)
+    '''
     f = open('log.txt', 'a')
     f.write('matrix: ' + str(kuz))
+    f.write('\nturn: ' + str(turn))
     f.write('\nown: ' + str(own_completness))
     f.write('\nopo: ' + str(oponent_completness))
+    f.write('\nrows: ')
+    f.write(str(rows))
+    f.write('\nopponent rows: ')
+    f.write(str(oponent_rows))
+    '''
     if(oponent_completness >= 75 and own_completness < 75):
-        f.write('\nMove: block')
-        f.write('\n\n')
-        f.close()
-        return oponent_rows[0]
+        #f.write('\nMove: block')
+        #f.write('\n\n')
+        #f.close()
+        return (6-oponent_rows[0])
     if(own_completness == 0):
-        f.write('\nMove: random')
-        f.write('\n\n')
-        f.close()
-        return randint(0,6)
+        #f.write('\nMove: random')
+        #f.write('\n\n')
+        #f.close()
+        r = randint(2,5)
+        while(board[5][r] > 0):
+            r = randint(0,6)
+
+        return r
     place = rows[0]
-    f.write('\nMove: informed')
-    f.write('\n\n')
-    f.close()
-    return place
+    #f.write('\nMove: informed')
+    #f.write('\n\n')
+    #f.close()
+    return (6-place)
 
 def completeness():
     global own_completness
