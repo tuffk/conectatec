@@ -15,7 +15,7 @@ def cast(board):
     global rows
     global oponent_rows
     num = 0
-    for i in board:
+    for i in reversed(board):
         for j in i:
             num = (num*10) + j
     return num
@@ -173,14 +173,14 @@ def play(turn, board):
 #            [0,0,2,2,1,1,1],
 #            [0,2,1,1,2,2,1]
 #            ]
-    test1 = [
-            [0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0],
-            [0,0,1,0,0,0,0],
-            [0,0,0,1,2,2,2],
-            [0,0,0,0,1,0,0],
-            [0,0,0,0,0,0,0]
-            ]
+   # test1 = [
+   #        [0,0,0,0,0,0,0],
+   #         [0,0,0,0,0,0,0],
+   #         [0,0,1,0,0,0,0],
+   #         [0,0,0,1,2,2,2],
+   #         [0,0,0,0,1,0,0],
+   #         [0,0,0,0,0,0,0]
+   #         ]
     kuz = cast(board)
     
     #print(kuz)
@@ -192,12 +192,12 @@ def play(turn, board):
         return oponent_rows[0]
     if(own_completness == 0):
         return randint(0,6)
-    place = 6 - rows[0]
+    place = rows[0]
     return place
 
 def completeness():
+    global own_completness
     return own_completness
-
 
 if __name__ == "__main__":
     play()

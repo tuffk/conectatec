@@ -152,15 +152,13 @@ def checkWinTopRight(row, col, player_number):
 
 
 def intelligentFunction1(turn, board):
-    point = kuz.play(turn,board)
-    completeness = kuz.completeness()
-    print("Program point: ", point, "Completeness: ", completeness)
-    return point
+    return int(input("play"))
 
 
 def intelligentFunction2(turn, board):
-    return int(input("play"))
-
+    point = kuz.play(turn,board)
+    print("Program point: ", point)
+    return point
 
 def main():
     global board
