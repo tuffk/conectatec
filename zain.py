@@ -185,6 +185,7 @@ def play(turn, board):
 
     #print(kuz)
     recorre2(len(str(kuz)),kuz, 0)
+    recorre2(len(str(kuz)), kuz, 1)
     #print(wise(kuz/100000, masks_up[1]))
     #print(own_completness)
     #print(rows)
