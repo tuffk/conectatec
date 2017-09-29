@@ -92,9 +92,9 @@ def recorre(long, num, length, height, mask, shiftit):
             num=int(num//10)
 
         if length == 6:
-            num=int(num/10)
+            num=int(num//10)
         elif length == 5:
-            num = int(num/100)
+            num = int(num//100)
 
         #print("Num :", num)
 
