@@ -116,8 +116,8 @@ def wise(num, mask, shifit):
         #print("Mask: ",mask)
         #print((mask % 10) == (num % 10))
         if((mask % 10 ) == 0):
-            mask = int(mask/10)
-            num = int(num/ 10)
+            mask = int(mask//10)
+            num = int(num//10)
             cont += 1
             continue
         if ((mask % 10) == (num % 10)):
@@ -213,8 +213,8 @@ def play(turn = 2, board = None):
         f.write('\nMove: block')
         f.write('\n\n')
         f.close()
-        if not oponent_rows:
-            return randint(0,6)
+        #if not oponent_rows:
+        #    return randint(0,6)
         return (6-oponent_rows[0])
     if(own_completness == 0):
         f.write('\nMove: random')
@@ -225,10 +225,11 @@ def play(turn = 2, board = None):
             r = randint(0,6)
 
         return r
-    if not rows:
-        place = randint(0,6)
-    else:
-        place = rows[0]
+    #if not rows:
+    #    place = randint(0,6)
+    #else:
+    #    place = rows[0]
+    place = rows[0]
     f.write('\nMove: informed')
     f.write('\n\n')
     f.close()

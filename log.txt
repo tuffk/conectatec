@@ -54,3 +54,107 @@ rows: [6]
 opponent rows: [6]
 Move: informed
 
+matrix: 200000
+turn: 1
+own: 0.0
+opo: 25
+rows: []
+opponent rows: [4, 5, 6]
+Move: random
+
+matrix: 20000201000
+turn: 1
+own: 25
+opo: 25
+rows: [1, 2, 2]
+opponent rows: [2, 1, 2]
+Move: informed
+
+matrix: 20200201010
+turn: 1
+own: 50
+opo: 50
+rows: [2, 2]
+opponent rows: [2, 2]
+Move: informed
+
+matrix: 22200201110
+turn: 1
+own: 25
+opo: 75
+rows: [4, 3, 5]
+opponent rows: [2]
+Move: block
+
+matrix: 200000010000022200201110
+turn: 1
+own: 25
+opo: 50
+rows: [0, 1, 1]
+opponent rows: [0, 1]
+Move: informed
+
+matrix: 200000010000022220201111
+turn: 1
+own: 25
+opo: 75
+rows: [0, 1, 1]
+opponent rows: [1]
+Move: block
+
+matrix: 220000011000022220201111
+turn: 1
+own: 25
+opo: 50
+rows: [3, 4, 3]
+opponent rows: [4, 3]
+Move: informed
+
+matrix: 2220000111000022220201111
+turn: 1
+own: 50
+opo: 75
+rows: [4, 5]
+opponent rows: [2]
+Move: block
+
+matrix: 20000001000002220000111000022220201111
+turn: 1
+own: 50
+opo: 50
+rows: [4, 5]
+opponent rows: [0, 1]
+Move: informed
+
+matrix: 20000001000002220000111000222220211111
+turn: 1
+own: 25
+opo: 50
+rows: [4, 5, 4]
+opponent rows: [5, 6]
+Move: informed
+
+matrix: 20000001000022220001111000222220211111
+turn: 1
+own: 50
+opo: 75
+rows: [6, 5]
+opponent rows: [3]
+Move: block
+
+matrix: 220000011000022220001111000222220211111
+turn: 1
+own: 50
+opo: 50
+rows: [6, 5]
+opponent rows: [5, 6]
+Move: informed
+
+matrix: 220000011000022220001111020222221211111
+turn: 1
+own: 75
+opo: 75
+rows: [5]
+opponent rows: [5]
+Move: informed
+
