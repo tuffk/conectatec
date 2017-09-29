@@ -198,7 +198,7 @@ def play(turn = 2, board = None):
     #print(wise(kuz/100000, masks_up[1]))
     #print(own_completness)
     #print(rows)
-    '''
+    
     f = open('log.txt', 'a')
     f.write('matrix: ' + str(kuz))
     f.write('\nturn: ' + str(turn))
@@ -208,25 +208,30 @@ def play(turn = 2, board = None):
     f.write(str(rows))
     f.write('\nopponent rows: ')
     f.write(str(oponent_rows))
-    '''
+
     if(oponent_completness >= 75 and own_completness < 75):
-        #f.write('\nMove: block')
-        #f.write('\n\n')
-        #f.close()
+        f.write('\nMove: block')
+        f.write('\n\n')
+        f.close()
+        if not oponent_rows:
+            return randint(0,6)
         return (6-oponent_rows[0])
     if(own_completness == 0):
-        #f.write('\nMove: random')
-        #f.write('\n\n')
-        #f.close()
+        f.write('\nMove: random')
+        f.write('\n\n')
+        f.close()
         r = randint(2,5)
         while(board[5][r] > 0):
             r = randint(0,6)
 
         return r
-    place = rows[0]
-    #f.write('\nMove: informed')
-    #f.write('\n\n')
-    #f.close()
+    if not rows:
+        place = randint(0,6)
+    else:
+        place = rows[0]
+    f.write('\nMove: informed')
+    f.write('\n\n')
+    f.close()
     return (6-place)
 
 def completeness():

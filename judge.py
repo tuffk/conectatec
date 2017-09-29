@@ -154,10 +154,12 @@ def checkWinTopRight(row, col, player_number):
 
 def intelligentFunction1(turn, board):
     #return int(input("row: "))
-    return kuz.play(turn,board)
+    temp = kuz.play(turn,board)
+    print("puse en: ",temp)
+    return temp
 
 def intelligentFunction2(turn, board):
-    return kuz.play(turn,board)
+    return int(input("pon numero"))
 
 def main():
     global board

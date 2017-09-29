@@ -1,0 +1,56 @@
+matrix: 200000
+turn: 1
+own: 0.0
+opo: 25
+rows: []
+opponent rows: [4, 5, 6]
+Move: random
+
+matrix: 200000210000
+turn: 1
+own: 25
+opo: 50
+rows: [2, 3, 3]
+opponent rows: [5, 6]
+Move: informed
+
+matrix: 202000210100
+turn: 1
+own: 50
+opo: 50
+rows: [3, 3]
+opponent rows: [3, 3]
+Move: informed
+
+matrix: 222000211100
+turn: 1
+own: 25
+opo: 75
+rows: [0, 1, 1]
+opponent rows: [3]
+Move: block
+
+matrix: 2000000100000222000211100
+turn: 1
+own: 50
+opo: 100
+rows: [1, 1]
+opponent rows: []
+Move: block
+
+matrix: 22000001100000222000211100
+turn: 1
+own: 50
+opo: 50
+rows: [5, 6]
+opponent rows: [2, 3]
+Move: informed
+
+matrix: 22000021100001222000211100
+turn: 1
+own: 75
+opo: 75
+rows: [6]
+opponent rows: [6]
+Move: informed
+
