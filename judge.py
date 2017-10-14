@@ -1,12 +1,12 @@
 import random
 import time
-import zain as kuz
+import aprende as kuz
+import numpy as np 
 
-width, height = 7, 6
+width, height = 8, 7
 
 # board = [[0 for x in range(width)]for y in range (height)]
 board = [[0 for y in range(width)] for x in range(height)]
-
 
 # Matrix positions
 # [5][0] [5][1] [5][2] [5][3] [5][4] [5][5] [5][6]
@@ -66,8 +66,6 @@ def printGame():
     global board, width, height
     for row in range(height - 1, -1, -1):
         for col in range(0, width):
-            # if(board[x][y] == 0):
-            #   print (" ")
             print (board[row][col], end=" ")
         print ("\n")
     print ("\n")
@@ -78,88 +76,64 @@ def checkAnyT(player_number):
     for r in range(0, height):
         for c in range(0, width):
             if (board[r][c] == player_number):
-                if (checkWinBelow(r, c, player_number)
-                    or checkWinAbove(r, c, player_number)
-                    or checkLeft(r, c, player_number)
-                    or checkRight(r, c, player_number)
-                    or checkWinBottomRight(r, c, player_number)
-                    or checkWinBottomLeft(r, c, player_number)
-                    or checkWinTopLeft(r, c, player_number)
-                    or checkWinTopRight(r, c, player_number)):
+                if (checkVertical(r, c, player_number)
+                    or checkHorizontal(r, c, player_number)
+                    or checkDigonales(r, c, player_number)):
                     return True
     return False
 
 
-def checkWinBelow(row, col, player_number):
+def checkVertical(row, col, player_number):
     global board, width, height
-    if (col + 1 == width or row == 0 or row + 1 == width): return False
-    if (board[row - 1][col + 1] == player_number and board[row][col + 1] == player_number and board[row + 1][
-            col + 1] == player_number): return True
+    if (row + 1 == height or row + 2 == height or row + 3 == height, row - 1 == height or row - 2 == height or row - 3 == height): return False
+    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col] 
+        and board[row + 2][col] == player_number): return True
+    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col] 
+        and board[row - 2][col] == player_number): return True
+    
     return False
 
 
-def checkWinAbove(row, col, player_number):
+def checkHorizontal(row, col, player_number):
     global board, width, height
-    if (col == 0 or row == 0 or row + 1 == height): return False
-    if (board[row - 1][col - 1] == player_number and board[row][col - 1] == player_number and board[row + 1][
-            col - 1] == player_number): return True
+    if (col == 0 or col + 1 == width or col + 2 == width or col - 2 == width or col + 3 == width or col - 3 == width): return False
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+        and board[row][col + 2] == player_number): return True
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+        and board[row][col - 2] == player_number): return True
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+        and board[row][col - 2] == player_number): return True
+    if (board[row][col] == player_number and board[row][col + 1] == player_number and board[row][col + 2] == player_number 
+        and board[row][col + 3] == player_number): return True
+    if (board[row][col] == player_number and board[row][col - 1] == player_number and board[row][col - 2] == player_number 
+        and board[row][col - 3] == player_number): return True
     return False
 
-
-def checkLeft(row, col, player_number):
+def checkDigonales(row, col, player_number):
     global board, width, height
-    if (row + 1 >= height or col + 1 >= width or col - 1 < 0): return False
-    if (board[row + 1][col - 1] == board[row + 1][col] == board[row + 1][col + 1] == player_number): return True
+    if (col == 0 or col + 1 == width or col + 2 == width or col - 2 == width or col + 3 == width or col - 3 == width
+        and row + 1 == height or row + 2 == height or row + 3 == height, row - 1 == height or row - 2 == height or row - 3 == height): return False
+    if (board[row][col] == player_number and board[row - 1][col - 1] == player_number and board[row + 1][col + 1] == player_number
+        and board[row + 2][col + 2]): return True
+    if (board[row][col] == player_number and board[row - 1][col - 1] == player_number and board[row + 1][col + 1] == player_number
+        and board[row - 2][col - 2]): return True
+    if (board[row][col] == player_number and board[row + 3][col + 3] == player_number and board[row + 1][col + 1] == player_number
+        and board[row + 2][col + 2]): return True
+    if (board[row][col] == player_number and board[row - 1][col + 1] == player_number and board[row - 2][col + 2] == player_number
+        and board[row + 1][col + 1]): return True
+    
     return False
-
-
-def checkRight(row, col, player_number):
-    global board, width, height
-    if (row - 1 < 0 or col + 1 >= width or col - 1 < 0): return False
-    if (board[row - 1][col - 1] == board[row - 1][col] == board[row - 1][col + 1] == player_number): return True
-    return False
-
-
-def checkWinBottomRight(row, col, player_number):
-    global board, width, height
-    if (row - 2 < 0 or col + 2 >= width): return False
-    if (board[row - 2][col] == player_number and board[row - 1][col + 1] == player_number and board[row][
-            col + 2] == player_number): return True
-    return False
-
-
-def checkWinBottomLeft(row, col, player_number):
-    global board, width, height
-    if (row + 2 >= height or col - 2 < 0): return False
-    if (board[row + 2][col] == player_number and board[row + 1][col - 1] == player_number and board[row][
-            col - 2] == player_number): return True
-    return False
-
-
-def checkWinTopLeft(row, col, player_number):
-    global board, width, height
-    if (row + 2 >= height or col - 2 < 0): return False
-    if (board[row + 2][col] == player_number and board[row + 1][col - 1] == player_number and board[row][
-            col - 2] == player_number): return True
-    return False
-
-
-def checkWinTopRight(row, col, player_number):
-    global board, width, height
-    if (row - 2 < 0 or col - 2 < 0): return False
-    if (board[row - 2][col] == player_number and board[row - 1][col - 1] == player_number and board[row][
-            col - 2] == player_number): return True
-    return False
-
 
 def intelligentFunction1(turn, board):
     #return int(input("row: "))
+    print("soy: ", turn)
     temp = kuz.play(turn,board)
     print("puse en: ",temp)
     return temp
 
 def intelligentFunction2(turn, board):
-    return int(input("pon numero"))
+    #return int(input("pon numero"))
+    return np.random.randint(8)
 
 def main():
     global board

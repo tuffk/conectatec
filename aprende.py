@@ -30,22 +30,15 @@ def recorre2(long, num, shiftit):
     global rows
     global oponent_rows
     cont = 0
-    #print("long")
-    #print(num)
+    
     for mask in masks:
         for x in mask:
             if(cont == 0):
-                #pass
-                #print("caso 1")
-                recorre(long,num,5,5,x, shiftit)
+                recorre(long,num,4,6,x, shiftit)
             elif(cont == 1):
-                #pass
-                #print("caso 2")
-                recorre(long,num,6,4,x, shiftit)
+                recorre(long,num,7,3,x, shiftit)
             elif(cont == 2):
-                #pass
-                #print("caso 3")
-                recorre(long,num,5,4,x, shiftit)
+                recorre(long,num,4,3,x, shiftit)
         cont += 1
 
 
@@ -61,21 +54,15 @@ def recorre(long, num, length, height, mask, shiftit):
     temp = 0.0
     temp_l = []
     times = int(1 + long/8)
-    #print("Numero: ", num)
-    #print("Mascara: ",mask)
+    
     for i in range(times):
-        #print("time: "+ str(i))
         for j in range(length):
-            #print("len: " + str(j))
-            #print("J: " + str(j))
             if i < height:
-                #print("Num:  ", num)
                 temp, temp_l = wise(num, mask, shiftit)
                 if (shiftit):
                     if temp > own_completness:
                         own_completness = temp
                         rows = []
-                        #print(j)
                         for k in temp_l:
                             k += j
                             k %= 7
@@ -95,9 +82,6 @@ def recorre(long, num, length, height, mask, shiftit):
             num=int(num//10)
         elif length == 5:
             num = int(num//100)
-
-        #print("Num :", num)
-
 
 def wise(num, mask, shifit):
     global masks
@@ -129,8 +113,7 @@ def wise(num, mask, shifit):
         mask = int(mask//10)
         num = int(num//10)
         cont += 1
-    #print("pos")
-    #print("\n")
+
     return res,pos
 
 def play(turn = 2, board = None):
@@ -148,43 +131,23 @@ def play(turn = 2, board = None):
     oponent_rows = []
     rows = []
     masks_down = [
-            1110000010, # T normal
-            100000111, # T invertida
-            ]
+        1111
+        ]
     masks_up = [
-            100000110000001, # T palito izquierda
-            1000000110000010, # T palito derecha
+            1000000010000000100000001
             ]
     masks_3x3 = [
-            100000100000101,# T (45) inferior derecha
-            10100000100000001,# T (135) superior derecha
-            10000000100000101, # T (-45) inferior izquierda
-            10100000100000100 # T (-135) superior izquierda
+            1000000001000000001000000001,
+            1000000100000010000001000
             ]
     masks = [
             masks_down, # reccore con (4,3) * 4
             masks_up, # recorre  (5,2) * 3
             masks_3x3 # recorre (4,3) * 3
             ]
-#    test1 = [
-#            [0,0,0,0,0,0,0],
-#            [0,0,0,0,0,0,0],
-#            [0,0,0,0,0,0,0],
-#            [0,0,0,0,0,0,0],
-#            [0,0,2,2,1,1,1],
-#            [0,2,1,1,2,2,1]
-#            ]
-   # test1 = [
-   #        [0,0,0,0,0,0,0],
-   #         [0,0,0,0,0,0,0],
-   #         [0,0,1,0,0,0,0],
-   #         [0,0,0,1,2,2,2],
-   #         [0,0,0,0,1,0,0],
-   #         [0,0,0,0,0,0,0]
-   #         ]
+
     kuz = cast(board)
-    #kuz = 200000020001001001102221
-    #print(kuz)
+    
     recorre2(len(str(kuz)),kuz, 0)
     recorre2(len(str(kuz)), kuz, 1)
 
@@ -195,9 +158,6 @@ def play(turn = 2, board = None):
         temp_lo = oponent_rows
         oponent_rows = rows
         rows = temp_lo
-    #print(wise(kuz/100000, masks_up[1]))
-    #print(own_completness)
-    #print(rows)
     
     f = open('log.txt', 'a')
     f.write('matrix: ' + str(kuz))
@@ -225,15 +185,12 @@ def play(turn = 2, board = None):
             r = randint(0,6)
 
         return r
-    #if not rows:
-    #    place = randint(0,6)
-    #else:
-    #    place = rows[0]
+    
     place = rows[0]
     f.write('\nMove: informed')
     f.write('\n\n')
     f.close()
-    return (6-place)
+    return (7-place)
 
 def completeness():
     global own_completness
