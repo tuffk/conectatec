@@ -1,7 +1,7 @@
 import random
 import time
 import aprende as kuz
-import numpy as np 
+import numpy as np
 
 width, height = 8, 7
 
@@ -86,43 +86,50 @@ def checkAnyT(player_number):
 def checkVertical(row, col, player_number):
     global board, width, height
     if (row + 1 == height or row + 2 == height or row + 3 == height, row - 1 == height or row - 2 == height or row - 3 == height): return False
-    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col] 
+    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col]
         and board[row + 2][col] == player_number): return True
-    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col] 
+    if (board[row - 1][col] == player_number and board[row][col] == player_number and board[row + 1][col]
         and board[row - 2][col] == player_number): return True
-    
+
     return False
 
 
 def checkHorizontal(row, col, player_number):
     global board, width, height
     if (col == 0 or col + 1 == width or col + 2 == width or col - 2 == width or col + 3 == width or col - 3 == width): return False
-    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number
         and board[row][col + 2] == player_number): return True
-    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number
         and board[row][col - 2] == player_number): return True
-    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number 
+    if (board[row][col - 1] == player_number and board[row][col] == player_number and board[row][col + 1] == player_number
         and board[row][col - 2] == player_number): return True
-    if (board[row][col] == player_number and board[row][col + 1] == player_number and board[row][col + 2] == player_number 
+    if (board[row][col] == player_number and board[row][col + 1] == player_number and board[row][col + 2] == player_number
         and board[row][col + 3] == player_number): return True
-    if (board[row][col] == player_number and board[row][col - 1] == player_number and board[row][col - 2] == player_number 
+    if (board[row][col] == player_number and board[row][col - 1] == player_number and board[row][col - 2] == player_number
         and board[row][col - 3] == player_number): return True
     return False
 
 def checkDigonales(row, col, player_number):
     global board, width, height
-    if (col == 0 or col + 1 == width or col + 2 == width or col - 2 == width or col + 3 == width or col - 3 == width
-        and row + 1 == height or row + 2 == height or row + 3 == height, row - 1 == height or row - 2 == height or row - 3 == height): return False
-    if (board[row][col] == player_number and board[row - 1][col - 1] == player_number and board[row + 1][col + 1] == player_number
-        and board[row + 2][col + 2]): return True
-    if (board[row][col] == player_number and board[row - 1][col - 1] == player_number and board[row + 1][col + 1] == player_number
-        and board[row - 2][col - 2]): return True
-    if (board[row][col] == player_number and board[row + 3][col + 3] == player_number and board[row + 1][col + 1] == player_number
-        and board[row + 2][col + 2]): return True
-    if (board[row][col] == player_number and board[row - 1][col + 1] == player_number and board[row - 2][col + 2] == player_number
-        and board[row + 1][col + 1]): return True
-    
+
+    cont = 0;
+
+    #Diagonal /
+    for x in range(height-3):
+        for y in range(3,width):
+            #cont += 1
+            #print("Diagonal / num:", cont )
+            if board[x][y]==player_number and board[x+1][y-1]==player_number and board[x+2][y-2]==player_number and board[x+3][y-3]==player_number:
+                return True
+    #Diagonal \
+    for x in range(height-3):
+        for y in range(width-3):
+            if board[x][y]==player_number and board[x+1][y+1]==player_number and board[x+2][y+2]==player_number and board[x+3][y+3]==player_number:
+                return True
+
+
     return False
+
 
 def intelligentFunction1(turn, board):
     #return int(input("row: "))
