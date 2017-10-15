@@ -131,16 +131,19 @@ def checkDigonales(row, col, player_number):
     return False
 
 
-def intelligentFunction1(turn, board):
+def intelligentFunction2(turn, board):
     #return int(input("row: "))
     print("soy: ", turn)
     temp = kuz.play(turn,board)
     print("puse en: ",temp)
     return temp
 
-def intelligentFunction2(turn, board):
+def intelligentFunction1(turn, board):
     #return int(input("pon numero"))
-    return np.random.randint(8)
+    print("soy: ", turn)
+    temp = np.random.randint(7)
+    print("puse en: ",temp)
+    return temp
 
 def main():
     global board

@@ -175,7 +175,7 @@ def play(turn = 2, board = None):
         f.close()
         #if not oponent_rows:
         #    return randint(0,6)
-        return (6-oponent_rows[0])
+        return (7-oponent_rows[0])
     if(own_completness == 0):
         f.write('\nMove: random')
         f.write('\n\n')
